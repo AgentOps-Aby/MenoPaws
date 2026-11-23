@@ -8,6 +8,23 @@ Built in one day at **Build For Her**, a women's health hackathon during SF Tech
 
 **Project page and design notes:** [okipie.com/lab/menopaws](https://www.okipie.com/lab/menopaws)
 
+## Two versions
+
+| Version | Link | Stores data? |
+| --- | --- | --- |
+| **Demo** (hackathon prototype) | [agentops-aby.github.io/MenoPaws](https://agentops-aby.github.io/MenoPaws/) | No. Nothing leaves the browser. |
+| **Pilot** | [agentops-aby.github.io/MenoPaws/pilot](https://agentops-aby.github.io/MenoPaws/pilot/) | Yes, only what she switches on. |
+
+**How the pilot stores data**
+
+- Saved only when she turns on sharing at the end. Each switch starts off; a "Yes, share all three" button turns them all on in one tap, and she can turn any off.
+- Her own story is cleaned on her device (names, places, dates, contact details), she reviews it, and the server removes contact details again.
+- Answers go to an encrypted database in AWS (DynamoDB with a MenoPaws-only encryption key, 35-day backups, audit logging). Only the MenoPaws team can read it.
+- No name, email, city, exact age, wellbeing or safety answers, or medication names are ever stored.
+- She gets a private 4-word code to delete her story at any time. We never store who she is.
+- Patterns show live group totals only once 10 or more women have shared.
+- The page loads no trackers or third-party fonts.
+
 ## The problem
 
 Women in the menopause transition are often told their symptoms are "just stress." Their experiences rarely become evidence: most menopause data comes from company-owned apps or clinic patients, and women get little back for sharing.
@@ -55,11 +72,11 @@ menopaws/
     └── logo/                     # primary, stacked, reverse and icon logos
 ```
 
-## What's mocked in this prototype
+## What's mocked in the demo
 
 - The patterns dashboard uses **1,247 synthetic stories** generated in the browser. They are not real people.
 - Discussion posts, doctor profiles and the demo account ("Maya") are **examples**.
-- **Nothing is stored or sent.** Answers live only in the open browser tab and disappear on refresh. Login does not create an account.
+- **Nothing is stored or sent in the demo.** Answers live only in the open browser tab and disappear on refresh. Login does not create an account. (The pilot does store answers; see Two versions.)
 
 ## Next steps
 
@@ -67,7 +84,6 @@ menopaws/
 - A moderated community to learn and speak up together
 - Return visits to track change over time
 - Spanish-language support
-- Secure storage and a real consent and withdrawal workflow
 
 ## Team
 
